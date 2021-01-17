@@ -12,17 +12,33 @@ let package = Package(
             targets: ["BogusApp-Common-Models"]),
     ],
     dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
+        .package(name: "danger-swift", url: "https://github.com/danger/swift.git", from: "1.0.0"),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat", from: "0.35.8"),
+        .package(url: "https://github.com/Realm/SwiftLint", from: "0.28.1"),
+        .package(url: "https://github.com/orta/Komondor", from: "1.0.0")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "BogusApp-Common-Models",
-            dependencies: []),
+            dependencies: [.product(name: "Danger", package: "danger-swift")]),
         .testTarget(
             name: "BogusApp-Common-ModelsTests",
             dependencies: ["BogusApp-Common-Models"]),
     ]
 )
+
+#if canImport(PackageConfig)
+    import PackageConfig
+
+    let config = PackageConfig([
+        "komondor": [
+            "pre-commit": [
+                "swift run swiftformat .",
+                "swift run swiftlint autocorrect --path Sources/",
+                "git add .",
+            ],
+        ]
+    ])
+#endif
