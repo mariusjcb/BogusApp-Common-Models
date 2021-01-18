@@ -1,5 +1,5 @@
-import XCTest
 @testable import BogusApp_Common_Models
+import XCTest
 
 final class BogusApp_Common_ModelsTests: XCTestCase {
     func testExample() {
