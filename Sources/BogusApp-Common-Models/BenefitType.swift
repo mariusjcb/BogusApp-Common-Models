@@ -8,7 +8,7 @@
 import Foundation
 
 public enum BenefitType: Codable {
-    case range(_ range: Range<Int>)
+    case range(_ range: ClosedRange<Int>)
     case value(_ value: Int)
     case text
     
@@ -28,7 +28,7 @@ public enum BenefitType: Codable {
             case .value:
                 self = .value(try container.decode(Int.self, forKey: .value))
             case .range:
-                self = .range(try container.decode(Range<Int>.self, forKey: .range))
+                self = .range(try container.decode(ClosedRange<Int>.self, forKey: .range))
             default:
                 throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: container.codingPath, debugDescription: "Error decoding."))
             }
