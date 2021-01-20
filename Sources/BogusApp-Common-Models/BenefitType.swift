@@ -15,7 +15,7 @@ public enum BenefitType: Codable {
     private enum CodingKeys: String, CodingKey {
         case range
         case value
-        case text
+        case textOnly
     }
     
     public init(from decoder: Decoder) throws {
@@ -23,7 +23,7 @@ public enum BenefitType: Codable {
             let key = container.allKeys.first
             
             switch key {
-            case .text:
+            case .textOnly:
                 self = .text
             case .value:
                 self = .value(try container.decode(Int.self, forKey: .value))
@@ -35,6 +35,14 @@ public enum BenefitType: Codable {
     }
     
     public func encode(to encoder: Encoder) throws {
-        <#TODO#>
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        switch self {
+        case .range(let range):
+            try container.encode(range, forKey: .range)
+        case .value(let value):
+            try container.encode(value, forKey: .value)
+        case .text:
+            try container.encode(true, forKey: .textOnly)
+        }
     }
 }

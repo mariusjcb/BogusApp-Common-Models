@@ -11,4 +11,10 @@ public struct Channel: Codable, Identifiable {
     public let id: UUID
     public let name: String
     public let fees: [Fee]
+    
+    public init(id: UUID, name: String, fees: [Fee]) {
+        self.id = id
+        self.name = name
+        self.fees = fees
+    }
 }
