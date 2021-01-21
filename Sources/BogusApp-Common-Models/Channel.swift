@@ -10,11 +10,11 @@ import Foundation
 public struct Channel: Codable, Identifiable {
     public let id: UUID
     public let name: String
-    public let fees: [Fee]
+    public let plans: [Plan]
     
-    public init(id: UUID, name: String, fees: [Fee]) {
+    public init(id: UUID, name: String, plans: [Plan]) {
         self.id = id
         self.name = name
-        self.fees = fees
+        self.plans = plans
     }
 }

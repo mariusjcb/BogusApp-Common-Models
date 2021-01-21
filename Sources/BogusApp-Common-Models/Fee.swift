@@ -7,17 +7,17 @@
 
 import Foundation
 
-public enum FeeType: String, Codable {
+public enum PlanType: String, Codable {
     case monthly
 }
 
-public struct Fee: Codable, Identifiable {
+public struct Plan: Codable, Identifiable {
     public let id: UUID
     public let price: Double
     public let benefits: [Benefit]
-    public let type: FeeType
+    public let type: PlanType
     
-    public init(id: UUID, price: Double, benefits: [Benefit], type: FeeType) {
+    public init(id: UUID, price: Double, benefits: [Benefit], type: PlanType) {
         self.id = id
         self.price = price
         self.benefits = benefits
