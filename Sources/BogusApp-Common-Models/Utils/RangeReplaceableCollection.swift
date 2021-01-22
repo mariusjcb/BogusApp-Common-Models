@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension RangeReplaceableCollection where Element: Hashable {
+public extension RangeReplaceableCollection where Element: Hashable {
     var orderedSet: Self {
         var set = Set<Element>()
         return filter { set.insert($0).inserted }
