@@ -11,7 +11,7 @@ public enum PlanType: String, Codable {
     case monthly
 }
 
-public struct Plan: Codable, Identifiable {
+public struct Plan: Codable, Identifiable, Equatable, Hashable {
     public let id: UUID
     public let price: Double
     public let benefits: [Benefit]
@@ -22,5 +22,9 @@ public struct Plan: Codable, Identifiable {
         self.price = price
         self.benefits = benefits
         self.type = type
+    }
+    
+    public static func == (lhs: Plan, rhs: Plan) -> Bool {
+        lhs.id == rhs.id
     }
 }

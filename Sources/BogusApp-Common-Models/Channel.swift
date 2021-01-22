@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Channel: Codable, Identifiable {
+public struct Channel: Codable, Identifiable, Equatable, Hashable {
     public let id: UUID
     public let name: String
     public let plans: [Plan]
@@ -16,5 +16,9 @@ public struct Channel: Codable, Identifiable {
         self.id = id
         self.name = name
         self.plans = plans
+    }
+    
+    public static func == (lhs: Channel, rhs: Channel) -> Bool {
+        lhs.id == rhs.id
     }
 }

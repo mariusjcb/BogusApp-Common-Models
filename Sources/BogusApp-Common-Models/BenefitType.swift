@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum BenefitType: Codable {
+public enum BenefitType: Codable, Equatable, Hashable {
     case range(_ range: ClosedRange<Int>)
     case value(_ value: Int)
     case text
